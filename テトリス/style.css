@@ -1,0 +1,16 @@
+/*背景とフォント、隙間、境界の指定*/
+body{
+    width: 300px;
+    background: black; 
+    font-family: sans-serif;
+    padding: 20px;
+    border: 2px solid blue;
+    margin: 20px;
+}
+
+/*四角形の設計図*/
+.square {
+    background: lightblue;
+    width: 100px;
+    height: 100px;
+}

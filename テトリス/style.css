@@ -6,8 +6,8 @@ html,body{
 }
 
 body{
-    width: 1200px;
-    height: 600px;
+    width: 1250px;
+    height: 625px;
     background: white; 
     font-family: sans-serif;
     border: 2px solid #0000ff;
@@ -17,8 +17,8 @@ body{
 }
 
 #mainboard{
-    width:290px;
-    height:580px;
+    width:300px;
+    height:600px;
     background:white;
     border:2px solid green;
 }

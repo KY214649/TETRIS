@@ -1,11 +1,16 @@
 /*背景とフォント、隙間、境界の指定*/
+html,body{
+    padding: 5px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
 body{
-    width: 300px;
-    background: black; 
+    width: 1200px;
+    height: 600px;
+    background: white; 
     font-family: sans-serif;
-    padding: 20px;
-    border: 2px solid blue;
-    margin: 20px;
+    border: 2px solid #0000ff;
 }
 
 /*四角形の設計図*/

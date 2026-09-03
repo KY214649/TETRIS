@@ -4,6 +4,12 @@ const ctx = canvas.getContext("2d");
 const block_size = 30;
 let x=0;
 let y=0;
+const start = performance.now();
+
+function vertical_move(){
+    y+=1;
+    draw();
+}
 
 function horizontal_move(){
     document.body.addEventListener
@@ -28,3 +34,5 @@ function draw(){
 
 draw();
 horizontal_move();
+
+setInterval(vertical_move,1000)

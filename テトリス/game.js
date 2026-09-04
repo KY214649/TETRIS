@@ -4,10 +4,24 @@ const ctx = canvas.getContext("2d");
 const block_size = 30;
 let x=0;
 let y=0;
-const start = performance.now();
+let dropInterval=10;
+let timecnt=0;
+
+function vertical_key(){
+    document.body.addEventListener
+        ('keydown',function(e){
+            if(e.code === 'KeyS' || e.code === 'ArrowDown')dropInterval=2;
+        })
+     document.body.addEventListener
+        ('keyup',function(e){
+            if(e.code === 'KeyS' || e.code === 'ArrowDown')dropInterval=10;
+        })
+}
 
 function vertical_move(){
-    y+=1;
+    timecnt++;
+    if(timecnt % dropInterval == 0)y+=1;
+    if(y>19)y=19;
     draw();
 }
 
@@ -34,5 +48,6 @@ function draw(){
 
 draw();
 horizontal_move();
+vertical_key();
 
-setInterval(vertical_move,1000)
+setInterval(vertical_move,100)

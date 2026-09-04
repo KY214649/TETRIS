@@ -6,25 +6,32 @@ let x=0;
 let y=0;
 let dropInterval=10;
 let timecnt=0;
+let isfall = true;
+let place = [];
 
 function vertical_key(){
+    //デフォルト→ソフトドロップ
     document.body.addEventListener
         ('keydown',function(e){
             if(e.code === 'KeyS' || e.code === 'ArrowDown')dropInterval=2;
         })
+
+    //ソフトドロップ→デフォルト
      document.body.addEventListener
         ('keyup',function(e){
             if(e.code === 'KeyS' || e.code === 'ArrowDown')dropInterval=10;
         })
 }
 
+//落下処理
 function vertical_move(){
     timecnt++;
-    if(timecnt % dropInterval == 0)y+=1;
-    if(y>19)y=19;
+    if(timecnt % dropInterval == 0 && isfall)y+=1;
+    if(y==19 && isfall)isfall = false;
     draw();
 }
 
+//横移動処理
 function horizontal_move(){
     document.body.addEventListener
         ('keydown',function(e){
@@ -40,6 +47,7 @@ function horizontal_move(){
         })
 }
 
+//描画
 function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.fillStyle = "blue";

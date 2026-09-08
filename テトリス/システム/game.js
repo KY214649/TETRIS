@@ -6,8 +6,8 @@ let x=0;
 let y=0;
 let dropInterval=10;
 let timecnt=0;
-let isfall = true;
 let place = [];
+let cnt=0;
 
 function vertical_key(){
     //デフォルト→ソフトドロップ
@@ -21,13 +21,43 @@ function vertical_key(){
         ('keyup',function(e){
             if(e.code === 'KeyS' || e.code === 'ArrowDown')dropInterval=10;
         })
+    
+    //ハードドロップ
+     document.body.addEventListener
+        ('keydown',function(e){
+            if(e.code === 'KeyW' || e.code === 'ArrowUp'){
+                while(isfall(x,y+1))y++;
+                landblock();
+                draw();
+            }
+        })
 }
+
+//当たり判定
+function isfall(x,y){
+    if(y>19)return false;
+    for(let i=0;i<place.length;i++){
+        if(place[i].x==x && place[i].y==y){
+            return false;
+        }}
+    return true;
+}
+
+//ミノの記録
+function landblock(){
+        place.push({x:x,y:y});
+        x=0;
+        y=0;
+        cnt++;
+    }
 
 //落下処理
 function vertical_move(){
     timecnt++;
-    if(timecnt % dropInterval == 0 && isfall)y+=1;
-    if(y==19 && isfall)isfall = false;
+    let result = isfall(x,y+1);
+    if(timecnt % dropInterval == 0 && result)y+=1;
+
+    if(!result)landblock();
     draw();
 }
 
@@ -52,6 +82,11 @@ function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.fillStyle = "blue";
     ctx.fillRect(block_size*x,block_size*y,block_size,block_size);
+
+    for(let i=0;i<cnt;i++){
+        ctx.fillStyle = "blue";
+        ctx.fillRect(block_size*place[i].x,block_size*place[i].y,block_size,block_size);
+    }
 }
 
 draw();

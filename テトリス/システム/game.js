@@ -79,14 +79,16 @@ function horizontal_move(){
         ('keydown',function(e){
             if(e.repeat)return;
 
+            let minX = Math.min(...CurrentMino.shape.map(s => s.x));
+            let maxX = Math.max(...CurrentMino.shape.map(s => s.x));
+
             console.log('押されたキー:',e.code,' x=',x);
             if(e.code === 'KeyA' || e.code === 'ArrowLeft')x-=1;
             if(e.code === "KeyD" || e.code === 'ArrowRight')x+=1;
 
-            for(let i=0;i<4;i++){
-            if(x+CurrentMino.shape[i].x<0){x=0;break;}
-            if(x+CurrentMino.shape[i].x>8){x=8;break;}
-            }
+            if(x+minX <0)x=-minX;
+            if(x+maxX >9)x=9-maxX;
+
             draw();
         })
 }
